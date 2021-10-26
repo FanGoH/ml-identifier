@@ -1,0 +1,9 @@
+https://www.youtube.com/watch?v=vzabeKdW9tE&ab_channel=clumsycomputer
+https://www.pyimagesearch.com/2020/08/17/ocr-with-keras-tensorflow-and-deep-learning/
+https://www.pyimagesearch.com/2020/08/17/ocr-with-keras-tensorflow-and-deep-learning/
+https://machinelearningmastery.com/how-to-develop-a-convolutional-neural-network-from-scratch-for-mnist-handwritten-digit-classification/
+https://machinelearningmastery.com/how-to-develop-a-convolutional-neural-network-from-scratch-for-mnist-handwritten-digit-classification/
+https://www.youtube.com/watch?v=x89-G6gz3jg
+https://www.kaggle.com/cdeotte/how-to-choose-cnn-architecture-mnist
+https://keras.io/getting_started/intro_to_keras_for_engineers/
+https://keras.io/examples/vision/mnist_convnet/
