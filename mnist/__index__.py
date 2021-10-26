@@ -37,13 +37,13 @@ model = keras.Sequential(
 
 model.summary()
 
-# batch_size = 128
-# epochs = 15
+batch_size = 128
+epochs = 15
 
-# model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
+model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
 
-# model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_split=0.1)
+model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_split=0.1)
 
-# score = model.evaluate(x_test, y_test, verbose=0)
-# print("Test loss:", score[0])
-# print("Test accuracy:", score[1])
+score = model.evaluate(x_test, y_test, verbose=0)
+print("Test loss:", score[0])
+print("Test accuracy:", score[1])
