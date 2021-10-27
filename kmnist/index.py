@@ -7,11 +7,12 @@ from keras import backend as K
 from keras.utils import np_utils
 import numpy as np
 import tensorflow as tf
+import json
 
 
 batch_size = 128
 num_classes = 10
-epochs = 12
+epochs = 10
 img_rows, img_cols = 28, 28
 
 
@@ -64,7 +65,6 @@ model = Sequential()
 model.add(Conv2D(32, kernel_size=(3, 3),
                  activation='relu',
                  input_shape=input_shape))
-model.add(Lambda(min_max_pool2d, output_shape=min_max_pool2d_output_shape))
 model.add(Conv2D(64, (3, 3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
@@ -82,6 +82,13 @@ model.fit(x_train, y_train,
           epochs=epochs,
           verbose=1,
           validation_data=(x_test, y_test))
+
+model_json = model.to_json()
+with open("model.json", "w") as json_file:
+    json_file.write(model_json)
+# serialize weights to HDF5
+model.save_weights("model.h5")
+print("Saved model to disk")
 
 train_score = model.evaluate(x_train, y_train, verbose=0)
 test_score = model.evaluate(x_test, y_test, verbose=0)
