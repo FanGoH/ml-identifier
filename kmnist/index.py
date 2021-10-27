@@ -8,11 +8,12 @@ from keras.utils import np_utils
 import numpy as np
 import tensorflow as tf
 import json
+from datetime import datetime
 
 
 batch_size = 128
 num_classes = 10
-epochs = 10
+epochs = 200
 img_rows, img_cols = 28, 28
 
 
@@ -87,7 +88,7 @@ model_json = model.to_json()
 with open("model.json", "w") as json_file:
     json_file.write(model_json)
 # serialize weights to HDF5
-model.save_weights("model.h5")
+model.save_weights(f"model{datetime.now()}.h5")
 print("Saved model to disk")
 
 train_score = model.evaluate(x_train, y_train, verbose=0)

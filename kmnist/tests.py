@@ -25,26 +25,31 @@ print("Loaded model from disk")
 # evaluate loaded model on test data
 image = Image.open('TEST.png')
 # convert image to numpy array
-data = np.asarray(image)
+images = []
+images.append( np.asarray(image))
 
 
 image = Image.open('Test2.png')
 # convert image to numpy array
-data1 = np.asarray(image)
+images.append( np.asarray(image))
 
 image = Image.open('Test3.png')
 # convert image to numpy array
-data2 = np.asarray(image)
+images.append( np.asarray(image))
 
 image = Image.open('Test4.png')
+image=image.convert('1') 
 # convert image to numpy array
-data2 = np.asarray(image)
+images.append( np.asarray(image))
 
 image = Image.open('Test5.png')
 # convert image to numpy array
-data2 = np.asarray(image)
-
-data = np.array([data,data1,data2])
+images.append( np.asarray(image))
+for i in images:
+    print (i.shape)
+data = np.array(images)
+for i in data:
+    print (i.shape)
 
 if K.image_data_format() == 'channels_first':
     data = data.reshape(data.shape[0], 1, 28, 28)
