@@ -9,11 +9,13 @@ import numpy as np
 import tensorflow as tf
 import json
 from datetime import date,datetime
+from keras.callbacks import ModelCheckpoint
+import os
 
 
 batch_size = 128
 num_classes = 10
-epochs = 500
+epochs = 1000
 img_rows, img_cols = 28, 28
 
 
@@ -26,8 +28,6 @@ def min_max_pool2d_output_shape(input_shape):
     shape = list(input_shape)
     shape[1] *= 2
     return tuple(shape)
-
-# replace maxpooling layer
 
 
 def load(f):
@@ -81,19 +81,24 @@ model.compile(loss=keras.losses.categorical_crossentropy,
               optimizer=tf.keras.optimizers.Adadelta(),
               metrics=['accuracy'])
 
+filepath = "./ModelCheckPoints/saved-model-{epoch:04d}.hdf5"
+checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=False, save_freq=4690)
+
 model.fit(x_train, y_train,
           batch_size=batch_size,
           epochs=epochs,
           verbose=1,
-          validation_data=(x_test, y_test))
+          validation_data=(x_test, y_test),callbacks=[checkpoint])
 
 model_json = model.to_json()
-name = f"model - {date.today()}"
+name = f"./ModelCheckPoints/model - {date.today()}"
 name1 = name + ".json"
 name2 = name + ".h5"
 with open(name1, "w") as json_file:
     json_file.write(model_json)
 # serialize weights to HDF5
+
+
 
 model.save_weights(name2)
 print("Saved model to disk")
@@ -104,3 +109,5 @@ print('Train loss:', train_score[0])
 print('Train accuracy:', train_score[1])
 print('Test loss:', test_score[0])
 print('Test accuracy:', test_score[1])
+
+os.system("shutdown /s")

@@ -15,12 +15,12 @@ import json
 def load(f):
     return np.load(f"E:\Manmade\gitHubRepo\ml-identifier\kmnist\{f}",  allow_pickle=True)['arr_0']
 
-json_file = open('model - 2021-10-28.json', 'r')
+json_file = open('./ModelCheckPoints/model - 2021-10-29.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 # load weights into new model
-loaded_model.load_weights("model - 2021-10-28.h5")
+loaded_model.load_weights("./ModelCheckPoints/model - 2021-10-29.h5")
 print("Loaded model from disk")
 # evaluate loaded model on test data
 image = Image.open('TEST.png')
@@ -68,6 +68,6 @@ data = data.astype('float32')
 data /= 255
 
 probs = loaded_model.predict(data)
-
+names = ["\u304a","\u304d","\u3059","\u3064","\u306a","\u306f","\u307e","\u3084","\u308c","\u3092"]
 for i in probs:
-    print( np.argmax(i))
+    print( names[np.argmax(i)])
