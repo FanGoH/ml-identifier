@@ -1,3 +1,4 @@
+"""Imports."""
 from __future__ import print_function
 import keras
 from keras.models import Sequential
@@ -7,7 +8,6 @@ from keras import backend as K
 from keras.utils import np_utils
 import numpy as np
 import tensorflow as tf
-import json
 from datetime import date,datetime
 from keras.callbacks import ModelCheckpoint
 import os
@@ -20,17 +20,20 @@ img_rows, img_cols = 28, 28
 
 
 def min_max_pool2d(x):
+    """Min Pooling."""
     max_x =  K.pool2d(x, pool_size=(2, 2), strides=(2, 2))
     min_x = -K.pool2d(-x, pool_size=(2, 2), strides=(2, 2))
     return K.concatenate([max_x, min_x], axis=1) # concatenate on channel
 
 def min_max_pool2d_output_shape(input_shape):
+    """Min Pooling Shape."""
     shape = list(input_shape)
     shape[1] *= 2
     return tuple(shape)
 
 
 def load(f):
+    """Utilitie."""
     return np.load(f"E:\Manmade\gitHubRepo\ml-identifier\kmnist\{f}",  allow_pickle=True)['arr_0']
 
 x_train = load('kmnist-train-imgs.npz')
@@ -110,4 +113,4 @@ print('Train accuracy:', train_score[1])
 print('Test loss:', test_score[0])
 print('Test accuracy:', test_score[1])
 
-os.system("shutdown /s")
+#os.system("shutdown /s")
