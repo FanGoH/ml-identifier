@@ -15,12 +15,12 @@ import json
 def load(f):
     return np.load(f"E:\Manmade\gitHubRepo\ml-identifier\kmnist\{f}",  allow_pickle=True)['arr_0']
 
-json_file = open('model.json', 'r')
+json_file = open('model - 2021-10-28.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 # load weights into new model
-loaded_model.load_weights("model.h5")
+loaded_model.load_weights("model - 2021-10-28.h5")
 print("Loaded model from disk")
 # evaluate loaded model on test data
 image = Image.open('TEST.png')

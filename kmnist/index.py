@@ -8,12 +8,12 @@ from keras.utils import np_utils
 import numpy as np
 import tensorflow as tf
 import json
-from datetime import datetime
+from datetime import date,datetime
 
 
 batch_size = 128
 num_classes = 10
-epochs = 200
+epochs = 500
 img_rows, img_cols = 28, 28
 
 
@@ -68,6 +68,9 @@ model.add(Conv2D(32, kernel_size=(3, 3),
                  input_shape=input_shape))
 model.add(Conv2D(64, (3, 3), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(128, kernel_size=(3, 3),
+                 activation='relu'))
+model.add(Lambda(min_max_pool2d, output_shape=min_max_pool2d_output_shape))
 model.add(Dropout(0.25))
 model.add(Flatten())
 model.add(Dense(128, activation='relu'))
@@ -85,10 +88,14 @@ model.fit(x_train, y_train,
           validation_data=(x_test, y_test))
 
 model_json = model.to_json()
-with open("model.json", "w") as json_file:
+name = f"model - {date.today()}"
+name1 = name + ".json"
+name2 = name + ".h5"
+with open(name1, "w") as json_file:
     json_file.write(model_json)
 # serialize weights to HDF5
-model.save_weights(f"model{datetime.now()}.h5")
+
+model.save_weights(name2)
 print("Saved model to disk")
 
 train_score = model.evaluate(x_train, y_train, verbose=0)
