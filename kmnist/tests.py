@@ -21,7 +21,7 @@ print(loaded_model.summary())
 print("Loaded model from disk")
 # evaluate loaded model on test data
 # convert image to numpy array
-sources = ['TEST.png', 'Test2.png', 'Test3.png', "Test4.png", 'Test5.png']
+sources = ['TEST.png', 'Test2.png', 'Test3.png', "Test4.png", 'Test5.png','Test6.png']
 
 images = []
 
@@ -52,4 +52,6 @@ probs = loaded_model.predict(data)
 names = ["\u304a", "\u304d", "\u3059", "\u3064", "\u306a",
          "\u306f", "\u307e", "\u3084", "\u308c", "\u3092"]
 for i in probs:
-    print(names[np.argmax(i)])
+    a =  float((i[np.argmax(i)] * 100))
+    b =  f'{a:.2f}'
+    print(f"El caracter corresponde a {names[np.argmax(i)]}, con una probabilidad de { b }")
