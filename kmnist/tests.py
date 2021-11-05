@@ -21,7 +21,7 @@ print(loaded_model.summary())
 print("Loaded model from disk")
 # evaluate loaded model on test data
 # convert image to numpy array
-sources = ['TEST.png', 'Test2.png', 'Test3.png', "Test4.png", 'Test5.png','Test6.png']
+sources = ['TEST.png', 'Test2.png', 'Test3.png', "Test4.png", 'Test5.png','Test6.png','Test7.png']
 
 images = []
 
