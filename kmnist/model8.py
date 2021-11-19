@@ -87,7 +87,7 @@ checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_o
 
 model.fit(x_train, y_train,
           batch_size=batch_size,
-          epochs=epochs,
+          epochs=epochs,    
           verbose=1,
           validation_data=(x_test, y_test),callbacks=[checkpoint])
 
