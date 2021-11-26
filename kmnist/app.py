@@ -21,6 +21,7 @@ json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 # load weights into new model
 loaded_model.load_weights(file+".h5")
+loaded_model.predict()
 
 def getImg(canvas,fileName):
 
